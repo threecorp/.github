@@ -1,0 +1,61 @@
+name: Bug report
+description: Report an unexpected behavior, regression, or defect.
+title: "[area] <one-sentence summary>"
+type: Bug
+labels: ["needs-triage"]
+projects: ["threecorp/1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [Extremo Issue Guidelines](https://github.com/threecorp/claude/blob/main/docs/ISSUE_GUIDELINES.md) before filing.
+        Set **Type**, **Area**, **Priority**, **Size** in the sidebar once the form is submitted.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One sentence describing what is broken.
+      placeholder: "Booking search returns empty list when query contains emoji"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open /admin/books
+        2. Search "café"
+        3. Observe empty result
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include error text, stack traces, or screenshots.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: "Commit SHA, env (local/stg/prod), browser or device."
+      placeholder: "extremo-view@abc1234 local Chrome 135"
+  - type: textarea
+    id: root_cause
+    attributes:
+      label: Suspected root cause (optional)
+  - type: textarea
+    id: related
+    attributes:
+      label: Related
+      description: "Parent issue, blocked-by, related PRs."
+      placeholder: |
+        Parent: #123
+        Blocked by: threecorp/extremo-api#74
