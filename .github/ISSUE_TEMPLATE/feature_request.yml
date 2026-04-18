@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose a new user-visible capability or API surface.
+title: "[area] <imperative summary>"
+type: Feature
+labels: ["needs-triage"]
+projects: ["threecorp/1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [Extremo Issue Guidelines](https://github.com/threecorp/claude/blob/main/docs/ISSUE_GUIDELINES.md) before filing.
+        For cross-repo features, file the parent here in the most-upstream repo (DB → proto → api → view → mobile) and add sub-issues in downstream repos.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One paragraph, user-facing.
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Problem it solves, metric it moves, decision record link.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable, check-box list.
+      placeholder: |
+        - [ ] Admin can filter bookings by client tag
+        - [ ] New gRPC field `clientTag` is backward compatible
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Design notes
+      description: API/schema/UX sketches; links to proto, diagrams, screenshots.
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of scope
+      description: Explicit non-goals.
+  - type: textarea
+    id: related
+    attributes:
+      label: Related
+      placeholder: |
+        Parent: #123
+        Sub-issues: #124, #125
+        Blocks: threecorp/extremo-view#67
