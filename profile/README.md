@@ -1,23 +1,35 @@
 # threecorp
 
-Threecorp builds **Extremo**, a multi-tenant booking / reservation SaaS platform.
+Welcome to **threecorp** — we build products that solve real operational problems for small and mid-sized businesses.
 
-## Extremo platform repositories
+## Products
 
-| Repo | Stack | Role |
-|---|---|---|
-| [extremo](https://github.com/threecorp/extremo) | Flutter / Dart | Mobile app (iOS / Android / macOS / Web) |
-| [extremo-api](https://github.com/threecorp/extremo-api) | Go + gRPC | Backend API server |
-| [extremo-db](https://github.com/threecorp/extremo-db) | MySQL + sqldef | Database schema |
-| [extremo-proto](https://github.com/threecorp/extremo-proto) | Protobuf + Buf | Shared API definitions |
-| [extremo-view](https://github.com/threecorp/extremo-view) | Remix + React + TS | Web frontend |
+| Product | Description |
+|---|---|
+| **Extremo** | Multi-tenant booking / reservation SaaS platform |
+| _(more products)_ | Additional services under active development |
 
-## Cross-repo coordination
+## Working with our repositories
 
-- **Project board**: [Extremo Platform (org Project #1)](https://github.com/orgs/threecorp/projects/1) aggregates issues and PRs across all five repositories.
-- **Issue authoring rules**: [`ISSUE_GUIDELINES.md`](https://github.com/threecorp/.github/blob/main/ISSUE_GUIDELINES.md). All humans and AI agents filing issues must read it.
-- **Default issue forms**: this repo ships the org-level [`.github/ISSUE_TEMPLATE/`](https://github.com/threecorp/.github/tree/main/.github/ISSUE_TEMPLATE) forms that are inherited by any extremo* repo without its own.
+Each repository ships its own `README.md`, `CLAUDE.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
 
-## Cross-project change order
+### Org-wide defaults
 
-DB → proto → api → view → mobile. Never modify a downstream project before the upstream contract is in place.
+This `.github` repository ships organization-level defaults inherited by all repos that don't override them:
+
+- [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUTING.md) — branching, review, and verification conventions
+- [`.github/ISSUE_TEMPLATE/`](https://github.com/threecorp/.github/tree/main/.github/ISSUE_TEMPLATE) — Bug / Feature / Task issue forms
+
+### Product-specific issue authoring
+
+Some products coordinate work across multiple repositories via an org-level [GitHub Project](https://github.com/orgs/threecorp/projects). When a product has its own authoring guide, link to it from the repo's `README.md`.
+
+- **Extremo**: [`ISSUE_GUIDELINES.md`](https://github.com/threecorp/.github/blob/main/ISSUE_GUIDELINES.md) — required reading for anyone (human or AI agent) filing issues against `extremo*` repos.
+
+## Contributing
+
+See [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUTING.md). TL;DR:
+
+- Write code and issues in **English**.
+- Follow the product-specific rules in each repo's `CLAUDE.md`.
+- AI coding agents must state explicitly when they cannot verify a change end-to-end, rather than claim completion.
