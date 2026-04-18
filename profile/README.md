@@ -2,13 +2,6 @@
 
 Welcome to **threecorp** — we build products that solve real operational problems for small and mid-sized businesses.
 
-## Products
-
-| Product | Description |
-|---|---|
-| **Extremo** | Multi-tenant booking / reservation SaaS platform |
-| _(more products)_ | Additional services under active development |
-
 ## Working with our repositories
 
 Each repository ships its own `README.md`, `CLAUDE.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
