@@ -1,0 +1,47 @@
+name: Task
+description: A defined unit of work — refactor, chore, migration, tech-debt, test, CI, build.
+title: "[area] <imperative summary>"
+type: Task
+labels: ["needs-triage"]
+projects: ["threecorp/1"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please read the [Extremo Issue Guidelines](https://github.com/threecorp/claude/blob/main/docs/ISSUE_GUIDELINES.md) before filing.
+        Tasks should have clear acceptance criteria and an estimable size (`XS`–`L`). If `XL`, split into sub-issues.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What must be done.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Files, modules, or layers affected.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] lint passes
+        - [ ] new unit tests cover <area>
+        - [ ] no behavior change observable in E2E
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: References, prior art, migration considerations.
+  - type: textarea
+    id: related
+    attributes:
+      label: Related
+      placeholder: |
+        Parent: #123
