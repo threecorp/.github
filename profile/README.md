@@ -1,7 +1,3 @@
-# threecorp
-
-Welcome to **threecorp** — we build products that solve real operational problems for small and mid-sized businesses.
-
 ## Working with our repositories
 
 Each repository ships its own `README.md`, `CLAUDE.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
