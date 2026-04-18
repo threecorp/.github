@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Extremo Issue Guidelines
+    url: https://github.com/threecorp/claude/blob/main/docs/ISSUE_GUIDELINES.md
+    about: Read the cross-repo authoring rules before filing.
+  - name: Extremo Platform Project Board
+    url: https://github.com/orgs/threecorp/projects/1
+    about: Cross-repo issue tracker with Status / Priority / Size / Area fields.
+  - name: Security disclosure
+    url: https://github.com/threecorp/claude/security/advisories/new
+    about: Report a vulnerability privately instead of filing a public issue.
