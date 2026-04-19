@@ -1,3 +1,13 @@
+<div align="center">
+
+# threecorp
+
+<sub><em>Multi-product engineering org · careful builds, careful agents.</em></sub>
+
+</div>
+
+---
+
 ## Working with our repositories
 
 Each repository ships its own `README.md`, `CLAUDE.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
@@ -23,6 +33,22 @@ See [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUT
 - Follow the product-specific rules in each repo's `CLAUDE.md`.
 - AI coding agents must state explicitly when they cannot verify a change end-to-end, rather than claim completion.
 
-<p align="center">
-  <img src="./assets/site-height.png" alt="Astronaut on Mars holding a rubber duck float" width="320">
+---
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/threecorp/.github/main/profile/assets/site-height.png" alt="Astronaut on Mars holding a yellow rubber duck float — the threecorp mascot" width="280" />
+
+<p>
+  <sub><strong>The threecorp mascot</strong> · serious work, packed with a duck float for the long haul.</sub>
 </p>
+
+<p>
+  <a href="https://github.com/threecorp"><img alt="GitHub org" src="https://img.shields.io/badge/org-threecorp-181717?style=flat-square&logo=github&logoColor=white" /></a>
+  &nbsp;
+  <a href="https://github.com/threecorp/.github/blob/main/CONTRIBUTING.md"><img alt="Contributing" src="https://img.shields.io/badge/contributing-guide-2EA44F?style=flat-square&logo=git&logoColor=white" /></a>
+  &nbsp;
+  <a href="https://github.com/threecorp/.github/blob/main/ISSUE_GUIDELINES.md"><img alt="Extremo Issue Guide" src="https://img.shields.io/badge/Extremo-issue%20guide-5C5CFF?style=flat-square&logo=readthedocs&logoColor=white" /></a>
+</p>
+
+</div>
