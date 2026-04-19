@@ -22,3 +22,7 @@ See [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUT
 - Write code and issues in **English**.
 - Follow the product-specific rules in each repo's `CLAUDE.md`.
 - AI coding agents must state explicitly when they cannot verify a change end-to-end, rather than claim completion.
+
+<p align="center">
+  <img src="./assets/site-height.png" alt="Astronaut on Mars holding a rubber duck float" width="320">
+</p>
