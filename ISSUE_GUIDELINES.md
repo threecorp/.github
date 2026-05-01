@@ -25,6 +25,7 @@ All issues filed in these repositories MUST follow this guide. The rules exist s
 | 11 | **Parent / sub-issues** | If this is part of a larger initiative, link as a sub-issue of the tracking parent. See §6. |
 | 12 | **Development** | Link related PRs, branches, and commits via the native Development sidebar. See §7. |
 | 13 | **Body** | Use the template for the chosen Type (Task/Bug/Feature). See §8. |
+| 14 | **Roadmap metadata** | If `epic:blueprinting`, add `tier:*` / `phase:*` / `feature:F-*` labels and `vX.Y-tier` milestone. See §9. |
 
 ---
 
@@ -392,3 +393,71 @@ This document lives at [`ISSUE_GUIDELINES.md`](https://github.com/threecorp/.git
 1. `ISSUE_GUIDELINES.md` (this file) in `threecorp/.github`
 2. The Project README at `orgs/threecorp/projects/1`
 3. `.github/ISSUE_TEMPLATE/*.yml` in `threecorp/.github` (org-level defaults; inherited by any extremo* repo that doesn't ship its own)
+
+---
+
+## 9. Extremo Roadmap metadata (epic / tier / phase / feature / milestone)
+
+The Extremo Platform roadmap (松/竹/梅 tier × Phase A–J × 32 features) is tracked via additional metadata on top of §3 / §4 / §5. Each issue **must** carry these when it belongs to the roadmap (= `epic:blueprinting`).
+
+### 9.1 Required label set for roadmap issues
+
+| Label series | Values | Purpose |
+|---|---|---|
+| `epic:*` | `epic:blueprinting` | Roadmap epic identifier (typically only this one) |
+| `tier:*` | `tier:梅` / `tier:竹` / `tier:松` (cumulative) | "Required from this tier onward". 梅 issue carries all 3, 竹 issue carries `tier:竹,松`, 松 issue carries `tier:松` only |
+| `phase:*` | `phase:A-foundation` / `phase:B-payment-cal` / `phase:C-pc-chart` / `phase:D-line-push` / `phase:E-public-api` / `phase:F-beauty` / `phase:G-google` / `phase:H-pos-acc` / `phase:I-multichannel` / `phase:J-platform` | One of 10 phase epics |
+| `feature:F-*` | 32 features (see 9.4) | Vertical feature group for parallel session targeting |
+
+### 9.2 Milestone scheme
+
+Each sub-project repo carries 3 milestones aligned with tier:
+
+- `v0.1-梅` — Foundation parity with Freee 予約
+- `v0.2-竹` — Beauty middleware (recommended target)
+- `v0.3-松` — Full beauty platform
+
+**An issue belongs to exactly one milestone** (= the tier where the work is delivered). Tier labels are cumulative; milestone is singular.
+
+### 9.3 Body template (roadmap issue)
+
+```markdown
+## Context
+(Why this is needed, citing TODO.txt / TODO-talk.txt / ROADMAP.md)
+
+## Acceptance
+- (Concrete completion criteria, 3–7 bullets)
+- ...
+
+## 親
+extremo-db#10 (Phase epic issue number; e.g. Phase A = extremo-db#10, Phase B = extremo-api#87, ...)
+```
+
+### 9.4 Feature catalog (32 features)
+
+| Tier classification | Features |
+|---|---|
+| Foundation (梅, cross-feature shared) | `F-Audit`, `F-EnumRollout`, `F-AttendanceBreak`, `F-NameMatching` |
+| Vertical 梅 | `F-AuthP0`, `F-BookingCluster`, `F-ServiceConfig`, `F-Stripe`, `F-GoogleCal`, `F-LINE`, `F-AccountHub`, `F-CalendarPages`, `F-PCScheduler`, `F-MobileAttendance` |
+| Vertical 竹 | `F-Chart`, `F-Push`, `F-LIFF`, `F-LINESegment`, `F-PublicAPI`, `F-Tickets`, `F-ReserveWithGoogle`, `F-Accounting`, `F-POS` |
+| Vertical 松 | `F-MaterialPurchase`, `F-Kanzashi`, `F-CustomDomain`, `F-CustomCMS`, `F-MultiStoreDashboard`, `F-Instagram`, `F-TwilioSMS`, `F-AIBookingPage`, `F-BIPredict` |
+
+A new feature label requires creation in all 6 repos (5 sub-projects + `extremo-spec`) plus Project #1 README update.
+
+### 9.5 PR labeling
+
+PRs implementing a roadmap issue must inherit:
+
+- `feature:F-*` (which feature this PR delivers part of)
+- `tier:*` (matching the linked issue's tier set)
+- `phase:*` (matching the linked issue)
+
+Do **not** add `epic:blueprinting` to PRs (issue-only). Use `Closes #<num>` in PR body so Project automation moves Status to `Done` on merge.
+
+### 9.6 Cross-references
+
+- Project board cheat-sheet: https://github.com/orgs/threecorp/projects/1 (README → "Filing follow-up Issues / PRs" section)
+- Master tracking + roadmap: https://github.com/threecorp/extremo-spec/issues/1
+- ROADMAP source of truth: https://github.com/threecorp/extremo-spec/blob/main/ROADMAP.md
+- Parallel session onboarding: https://github.com/threecorp/extremo-spec/blob/main/docs/onboarding-tier-ume.md
+- Phase / feature dependency map: https://github.com/threecorp/extremo-spec/blob/main/docs/dependencies.md
