@@ -100,21 +100,50 @@ Every issue that lives on the `Extremo Platform` project board (i.e. **all** iss
 | Phase | `phase:A-foundation` … `phase:J-platform` | exactly 1 | One of the 10 phase epics. |
 | Feature | `feature:F-*` | exactly 1 | Vertical/foundation feature group (e.g. `feature:F-Stripe`). The Project #1 README maintains the authoritative list. |
 
-#### Tier accumulation rule (the single most-violated rule)
+#### Tier label rule — 2 cases by feature type (the single most-violated rule)
 
-Tier labels are **cumulative from the earliest tier upward**, never single-tier. Picking a tier means "this work is needed *from this tier onward*", which implies it is also needed in every later tier. Therefore:
+The `tier:*` labeling follows **two distinct rules** depending on whether the issue belongs to a Foundation feature or a Vertical feature. Decide which case applies *first*, then label accordingly.
 
-| If the work first appears in… | Add **all** these `tier:*` labels |
+**Case 1 — Foundation features** (`F-Audit` / `F-EnumRollout` / `F-AttendanceBreak` / `F-NameMatching`, 4 features only)
+
+Foundation features are cross-tier infrastructure (audit log / enum rollout / attendance break / name matching). They are *not* scoped to one release tier — every tier consumes them. Therefore **every Foundation issue carries all 3 tier labels regardless of milestone**:
+
+```
+tier:梅 + tier:竹 + tier:松   (always 3, no exceptions)
+```
+
+This is what makes the Project #1 `Foundation × 梅 / × 竹 / × 松` per-feature filters return the same issue set.
+
+**Case 2 — Vertical features** (the other 29 features) — standard cumulative rule
+
+Vertical features are scoped to a release tier of *first appearance*. Tier labels are **cumulative from that tier upward**, never single-tier. Picking a tier means "this work is needed *from this tier onward*", which implies it is also needed in every later tier. Therefore:
+
+| If the Vertical work first appears in… | Add **all** these `tier:*` labels |
 |---|---|
 | Tier 梅 (foundation parity) | `tier:梅` + `tier:竹` + `tier:松` (3 labels) |
 | Tier 竹 (beauty middleware) | `tier:竹` + `tier:松` (2 labels) |
 | Tier 松 (full platform) | `tier:松` (1 label) |
 
-**Why cumulative, not single-tier?** The Project board's `Tier 梅 / Tier 竹 / Tier 松` sequential views (and the `× 梅 / × 竹 / × 松` per-feature filters) rely on the cumulative semantics: "all issues that must be done by the time we ship 松" must include everything from 梅 and 竹 too. A tier-梅 issue with only `tier:梅` would silently disappear from the 竹 and 松 filtered views.
+The Project board's `Tier 梅 / Tier 竹 / Tier 松` sequential views rely on the cumulative semantics: "all issues that must be done by the time we ship 松" must include everything from 梅 and 竹 too. A Vertical tier 梅 issue with only `tier:梅` silently disappears from the 竹 and 松 filtered views.
+
+> Note: a Vertical 梅 issue and a Foundation issue both end up with 3 tier labels, but the *reason* differs (Foundation = tier-agnostic by definition; Vertical 梅 = earliest tier cumulated upward). Determine the feature type first.
 
 **Conversely**, the **Milestone** is set to the *single* tier you actually plan to ship the work in: `v0.1-梅` / `v0.2-竹` / `v0.3-松`. Tier labels = scope coverage; Milestone = ship target.
 
-**Worked example** — a new tier 梅 feature filed in `extremo-view`:
+**Worked example — Foundation feature** (always 3 tier labels):
+
+```bash
+gh issue create -R threecorp/extremo-api \
+  --title "[booking] F-Audit follow-up: add admin filter for noshow events" \
+  --body-file /tmp/body.md \
+  --label "epic:f-audit" \
+  --label "phase:A-foundation" \
+  --label "tier:梅" --label "tier:竹" --label "tier:松" \
+  --label "feature:F-Audit" \
+  --milestone "v0.2-竹"   # shipping in 竹, but tier coverage is all 3
+```
+
+**Worked example — Vertical 梅 feature** (cumulative — same 3 labels, different reason):
 
 ```bash
 gh issue create -R threecorp/extremo-view \
@@ -127,15 +156,12 @@ gh issue create -R threecorp/extremo-view \
   --milestone "v0.1-梅"
 ```
 
-If the same work were instead scoped to first appear in tier 竹, the labels would be `tier:竹` + `tier:松` (no `tier:梅`) and the milestone `v0.2-竹`.
-
-#### Foundation features carry all 3 tier labels by definition
-
-The 4 Foundation features (`F-Audit` / `F-EnumRollout` / `F-AttendanceBreak` / `F-NameMatching`) are cross-tier infrastructure, so **every issue under them gets all 3 tier labels** regardless of which milestone ships them. This is what makes the Project #1 "Foundation × 梅 / × 竹 / × 松" filter URLs return the same set of issues — a property the board relies on.
+If the same Vertical work were instead scoped to first appear in tier 竹, the labels would be `tier:竹` + `tier:松` (no `tier:梅`) and the milestone `v0.2-竹`.
 
 #### Quick self-check before submitting
 
-- [ ] Is `tier:*` cumulative? (1 label only ⇒ likely wrong unless it's pure tier:松 work)
+- [ ] **Foundation or Vertical?** Foundation (4 features) → 3 tier labels always. Vertical → cumulative from first-appearance tier.
+- [ ] If Vertical, is `tier:*` cumulative? (1 label only ⇒ likely wrong unless it's pure tier:松 work)
 - [ ] Does the Milestone match exactly one of the tier labels? (`v0.1-梅` ↔ `tier:梅`, etc.)
 - [ ] Is `feature:F-*` listed in the Project #1 README? (If not, file a master-tracking discussion before proceeding.)
 - [ ] Is `phase:*` set? (Missing `phase:` is the second-most-violated rule.)
@@ -433,7 +459,8 @@ Follow this exact sequence. It is idempotent and produces a fully-compliant issu
 - Duplicating a milestone across repos for the same epic.
 - Using the body to hold acceptance criteria for multiple sub-features instead of creating sub-issues.
 - Leaving Status = Backlog after work has started — always advance.
-- Setting **only one `tier:*` label** when the work first appears in tier 梅 or tier 竹 — tier labels are cumulative (see §3.5). A tier 梅 issue must carry all 3 tier labels.
+- Setting **only one `tier:*` label** for a Vertical feature when the work first appears in tier 梅 or tier 竹 — tier labels are cumulative (see §3.5). A Vertical tier 梅 issue must carry all 3 tier labels.
+- Treating a **Foundation feature** issue with single-tier or partial-tier labels — Foundation issues always carry all 3 tier labels regardless of milestone (see §3.5 Case 1).
 - Filing an issue without `phase:*` / `feature:F-*` / `epic:*` / `tier:*` — all four roadmap axes are mandatory for any roadmap-tracked work (see §3.5).
 - Adding a brand-new `feature:F-*` value without first updating the [Project #1 README](https://github.com/orgs/threecorp/projects/1) feature-vertical table and the existing-features list. The README is the canonical source.
 
