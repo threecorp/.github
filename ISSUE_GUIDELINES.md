@@ -166,6 +166,28 @@ If the same Vertical work were instead scoped to first appear in tier 竹, the l
 - [ ] Is `feature:F-*` listed in the Project #1 README? (If not, file a master-tracking discussion before proceeding.)
 - [ ] Is `phase:*` set? (Missing `phase:` is the second-most-violated rule.)
 
+#### PR labeling — inherit from the linked issue
+
+When opening a PR that implements a roadmap-tracked issue, the PR **must inherit** these labels from the linked issue (see §7 for linking):
+
+- `feature:F-*` (which feature this PR delivers part of)
+- `tier:*` (matching the linked issue's full tier set — Foundation: 3; Vertical: cumulative)
+- `phase:*` (matching the linked issue)
+
+Do **not** add `epic:*` to PRs (issue-only). Use `Closes #<num>` in the PR body so Project #1 automation moves Status → Done on merge. PRs do not get a `milestone` (the linked issue carries the milestone).
+
+#### Roadmap cross-references
+
+The canonical sources of truth for the roadmap and the labels above:
+
+- Project #1 board + label catalog: <https://github.com/orgs/threecorp/projects/1>
+- Master tracking issue: <https://github.com/threecorp/extremo-spec/issues/1>
+- ROADMAP source of truth: <https://github.com/threecorp/extremo-spec/blob/main/ROADMAP.md>
+- Parallel session onboarding: <https://github.com/threecorp/extremo-spec/blob/main/docs/onboarding-tier-ume.md>
+- Phase / feature dependency map: <https://github.com/threecorp/extremo-spec/blob/main/docs/dependencies.md>
+
+When `feature:F-*` values, phase definitions, or tier/milestone schemes change, update Project #1 README first, then this section.
+
 ---
 
 ## 4. Project field reference
@@ -305,6 +327,8 @@ In commit messages, reference issues with `#<num>` (same repo) or `<owner>/<repo
 
 The repos ship issue forms at `.github/ISSUE_TEMPLATE/` that enforce the structure below. If you file an issue via the API, still follow the structure.
 
+For roadmap-tracked issues (= `epic:*` set), the **Related** section MUST include a `親:` line pointing to the Phase epic issue (e.g. `extremo-db#10` for Phase A, `extremo-api#87` for Phase B, etc.). The Phase epic issue numbers are listed in the [extremo-spec Master tracking issue](https://github.com/threecorp/extremo-spec/issues/1).
+
 ### 8.1 Feature
 
 ```markdown
@@ -325,7 +349,8 @@ The repos ship issue forms at `.github/ISSUE_TEMPLATE/` that enforce the structu
 <explicit non-goals>
 
 ## Related
-- Parent: #<n>
+- 親: <repo>#<n>          (Phase epic issue, mandatory if epic:* is set)
+- Parent: #<n>            (sub-issue parent, if different from Phase epic)
 - Sub-issues: #<n>, #<n>
 - Blocks / Blocked by: #<n>
 ```
@@ -374,7 +399,8 @@ The repos ship issue forms at `.github/ISSUE_TEMPLATE/` that enforce the structu
 <references, prior art, migration considerations>
 
 ## Related
-- Parent: #<n>
+- 親: <repo>#<n>          (Phase epic issue, mandatory if epic:* is set)
+- Parent: #<n>            (sub-issue parent, if different from Phase epic)
 ```
 
 ---
