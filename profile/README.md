@@ -10,7 +10,7 @@
 
 ## Working with our repositories
 
-Each repository ships its own `README.md`, `CLAUDE.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
+Each repository ships its own `README.md` (agent instructions), and stack-specific setup notes. Start there before asking questions.
 
 ### Org-wide defaults
 
@@ -29,7 +29,6 @@ Some products coordinate work across multiple repositories via an org-level [Git
 
 See [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUTING.md). TL;DR:
 
-- Follow the product-specific rules in each repo's `CLAUDE.md`.
 - AI coding agents must state explicitly when they cannot verify a change end-to-end, rather than claim completion.
 
 ---
