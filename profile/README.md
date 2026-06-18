@@ -29,7 +29,6 @@ Some products coordinate work across multiple repositories via an org-level [Git
 
 See [`CONTRIBUTING.md`](https://github.com/threecorp/.github/blob/main/CONTRIBUTING.md). TL;DR:
 
-- Write code and issues in **English**.
 - Follow the product-specific rules in each repo's `CLAUDE.md`.
 - AI coding agents must state explicitly when they cannot verify a change end-to-end, rather than claim completion.
 
