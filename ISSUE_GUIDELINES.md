@@ -114,7 +114,7 @@ tier:梅 + tier:竹 + tier:松   (always 3, no exceptions)
 
 This is what makes the Project #1 `Foundation × 梅 / × 竹 / × 松` per-feature filters return the same issue set.
 
-**Case 2 — Vertical features** (the other 29 features) — standard cumulative rule
+**Case 2 — Vertical features** (all features other than the 4 Foundation features — authoritative catalog in the [Project #1 README](https://github.com/orgs/threecorp/projects/1)) — standard cumulative rule
 
 Vertical features are scoped to a release tier of *first appearance*. Tier labels are **cumulative from that tier upward**, never single-tier. Picking a tier means "this work is needed *from this tier onward*", which implies it is also needed in every later tier. Therefore:
 
